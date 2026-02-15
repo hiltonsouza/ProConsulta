@@ -43,7 +43,7 @@
         }
 
         <MudItem md="12">
-            <MudStaticTextField @bind-Value="@Input.NewEmail" For="@(() => Input.NewEmail)" Label="New Email" HelperText="Please enter new email." />
+            <MudStaticTextField @bind-Value="@Input.NewEmail" For="@(() => Input.NewEmail)" UserAttributes="@(new() { { "autocomplete", "email" }, { "aria-required", "true" } } )" Label="New Email" HelperText="Please enter new email." />
         </MudItem>
 
         <MudItem md="12">
