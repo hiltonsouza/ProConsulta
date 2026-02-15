@@ -6,6 +6,6 @@
         public string Nome { get; set; } = null!;
         public string? Descricao { get; set; }
 
-        public ICollection<Paciente> Medicos { get; set; } = new List<Paciente>();
+        public ICollection<Medico> Medicos { get; set; } = new List<Medico>();
     }
 }

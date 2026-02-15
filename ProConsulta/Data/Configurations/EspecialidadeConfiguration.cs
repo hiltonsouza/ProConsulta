@@ -1,5 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using ProConsulta.Models;
 
 namespace ProConsulta.Data.Configurations
@@ -19,7 +19,7 @@ namespace ProConsulta.Data.Configurations
             builder.Property(x => x.Descricao)
                 .IsRequired(false)
                 .HasColumnType("VARCHAR(150)");
-                       
+
             builder.HasMany(m => m.Medicos)
                 .WithOne(e => e.Especialidade)
                 .OnDelete(DeleteBehavior.Restrict);

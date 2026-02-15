@@ -5,7 +5,7 @@ using System.Reflection;
 
 namespace ProConsulta.Data
 {
-    public class ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) 
+    public class ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
         : IdentityDbContext<ApplicationUser>(options)
     {
         public DbSet<Especialidade> Especialidades { get; set; }
@@ -21,6 +21,5 @@ namespace ProConsulta.Data
 
             base.OnModelCreating(builder);
         }
-
     }
 }
