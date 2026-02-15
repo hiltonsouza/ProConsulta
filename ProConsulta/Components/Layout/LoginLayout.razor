@@ -1,0 +1,39 @@
+﻿@using Microsoft.AspNetCore.Identity
+@using ProConsulta.Components.Theme
+@inherits LayoutComponentBase
+
+<MudThemeProvider IsDarkMode="_isDarkMode" Theme="CustomTheme.Default" />
+<MudPopoverProvider />
+<MudDialogProvider />
+<MudSnackbarProvider />
+
+<MudLayout Class="login-page">
+
+    <MudAppBar Elevation="0" Fixed="true" Color="Color.Transparent">
+        <MudSpacer />
+        <MudStack Row="true" Spacing="2" Class="floating-nav">
+
+            <MudIconButton Href="/"
+                           Icon="@Icons.Material.Filled.Home"
+                           Class="nav-btn" />
+
+            <MudIconButton Icon="@(_isDarkMode? Icons.Material.Filled.LightMode : Icons.Material.Filled.DarkMode)"
+                           Color="Color.Inherit"
+                           OnClick="@ToggleTheme" />
+        </MudStack>
+
+    </MudAppBar>
+
+    <MudMainContent Class="content-area">
+        @Body
+    </MudMainContent>
+
+</MudLayout>
+@code {
+    private bool _isDarkMode = true; // Começa Dark por padrão, conforme seu print
+
+    private void ToggleTheme()
+    {
+        _isDarkMode = !_isDarkMode;
+    }
+}
