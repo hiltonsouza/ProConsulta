@@ -7,6 +7,7 @@ namespace ProConsulta.Repositories.Pacientes
     public class PacienteRepository : IPacienteRepository
     {
         private readonly ApplicationDbContext _context;
+
         public PacienteRepository(ApplicationDbContext context)
         {
             _context = context;
@@ -33,7 +34,7 @@ namespace ProConsulta.Repositories.Pacientes
                 .ToListAsync();
         }
 
-        public async Task<Paciente> GetByIdAsync(int id)
+        public async Task<Paciente?> GetByIdAsync(int id)
         {
             return await _context
                 .Pacientes

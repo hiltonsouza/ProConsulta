@@ -1,12 +1,12 @@
-﻿using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using ProConsulta.Models;
 
 namespace ProConsulta.Data.Configurations
 {
-    public class MedicoConfiguration : IEntityTypeConfiguration<Paciente>
+    public class MedicoConfiguration : IEntityTypeConfiguration<Medico>
     {
-        public void Configure(EntityTypeBuilder<Paciente> builder)
+        public void Configure(EntityTypeBuilder<Medico> builder)
         {
             builder.ToTable("Medicos");
 
@@ -32,9 +32,9 @@ namespace ProConsulta.Data.Configurations
                 .IsRequired(true);
 
             builder.HasIndex(x => x.Documento)
-            .IsUnique();
+                .IsUnique();
 
-            builder.HasMany<Agendamento>(a => a.Agendamentos)
+            builder.HasMany(a => a.Agendamentos)
                 .WithOne(m => m.Medico)
                 .HasForeignKey(a => a.MedicoId)
                 .OnDelete(DeleteBehavior.Restrict);

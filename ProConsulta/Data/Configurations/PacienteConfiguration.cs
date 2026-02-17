@@ -1,5 +1,4 @@
-﻿using Microsoft.Data.SqlClient;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using ProConsulta.Models;
 
@@ -15,16 +14,16 @@ namespace ProConsulta.Data.Configurations
 
             builder.Property(x => x.Nome)
                 .IsRequired(true)
-                .HasColumnType("VARCHAR(60)");
+                .HasColumnType("VARCHAR(50)");
 
             builder.Property(x => x.Documento)
                 .IsRequired(true)
                 .HasColumnType("NVARCHAR(11)");
-            
+
             builder.Property(x => x.Email)
                 .IsRequired(true)
                 .HasColumnType("VARCHAR(50)");
-            
+
             builder.Property(x => x.Celular)
                 .IsRequired(true)
                 .HasColumnType("NVARCHAR(11)");
@@ -32,7 +31,7 @@ namespace ProConsulta.Data.Configurations
             builder.HasIndex(x => x.Documento)
                 .IsUnique();
 
-            builder.HasMany<Agendamento>(a => a.Agendamentos)
+            builder.HasMany(a => a.Agendamentos)
                 .WithOne(p => p.Paciente)
                 .HasForeignKey(a => a.PacienteId)
                 .OnDelete(DeleteBehavior.Restrict);

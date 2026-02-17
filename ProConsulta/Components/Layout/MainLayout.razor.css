@@ -1,0 +1,127 @@
+﻿/* 
+   -------------------------------------------------------------------------
+   VARIÁVEIS DE TEMA E GLASSMORPHISM
+   -------------------------------------------------------------------------
+   Definimos variáveis locais para controlar a opacidade e o desfoque.
+*/
+:root {
+    --glass-blur: 16px;
+    --glass-border-light: rgba(255, 255, 255, 0.4);
+    --glass-border-dark: rgba(255, 255, 255, 0.05);
+    --glass-bg-light: rgba(255, 255, 255, 0.7); /* Mais opaco para legibilidade */
+    --glass-bg-dark: rgba(30, 30, 45, 0.7);
+    --glass-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.15);
+    /* Gradiente de fundo inspirado no Google Stitch/Modern UI */
+    --app-bg-gradient-light: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+    --app-bg-gradient-dark: linear-gradient(135deg, #0f0c29 0%, #302b63 50%, #24243e 100%);
+}
+
+/* Aplicação do Fundo Global */
+::deep.modern-dashboard-layout {
+    background: var(--app-bg-gradient-light);
+    min-height: 100vh;
+}
+
+/* Detecção de Modo Escuro via classe do MudBlazor */
+.mud-theme-dark ::deep.modern-dashboard-layout {
+    background: var(--app-bg-gradient-dark);
+}
+
+/* 
+   -------------------------------------------------------------------------
+   APP BAR GLASS
+   -------------------------------------------------------------------------
+*/
+::deep.glass-appbar {
+    background: var(--glass-bg-light) !important;
+    backdrop-filter: blur(var(--glass-blur));
+    -webkit-backdrop-filter: blur(var(--glass-blur)); /* Safari */
+    border-bottom: 1px solid var(--glass-border-light);
+    box-shadow: var(--glass-shadow);
+    transition: background 0.3s ease, border 0.3s ease;
+}
+
+.mud-theme-dark ::deep.glass-appbar {
+    background: var(--glass-bg-dark) !important;
+    border-bottom: 1px solid var(--glass-border-dark);
+}
+
+/* 
+   -------------------------------------------------------------------------
+   FLOATING DRAWER (O Coração do Design)
+   -------------------------------------------------------------------------
+*/
+::deep.floating-drawer {
+    /* 
+       Desconectar o drawer das bordas.
+       Top: Ajustado para ficar abaixo da AppBar ou alinhado com ela.
+       Height: Calculado para não tocar o fundo da tela.
+    */
+    top: 80px !important; /* Espaço para a AppBar */
+    height: calc(100vh - 100px) !important; /* Altura total menos margens sup/inf */
+    margin-left: 20px; /* Flutuando da esquerda */
+    border-radius: 24px !important; /* Cantos super arredondados */
+    border: 1px solid var(--glass-border-light);
+    /* Efeito de Vidro */
+    background-color: var(--glass-bg-light) !important;
+    backdrop-filter: blur(var(--glass-blur));
+    -webkit-backdrop-filter: blur(var(--glass-blur));
+    box-shadow: var(--glass-shadow);
+    /* Importante: Remover a borda direita padrão do Material Design */
+    border-right: none !important;
+    overflow: hidden; /* Garante que o conteúdo respeite o border-radius */
+}
+
+.mud-theme-dark ::deep.floating-drawer {
+    background-color: var(--glass-bg-dark) !important;
+    border: 1px solid var(--glass-border-dark);
+}
+
+/* Ajuste interno do Drawer para garantir transparência */
+::deep.floating-drawer.mud-drawer-content {
+    background-color: transparent !important;
+}
+
+/* 
+   -------------------------------------------------------------------------
+   NAVEGAÇÃO ESTILIZADA (Google Stitch Style)
+   -------------------------------------------------------------------------
+*/
+::deep.mud-nav-link {
+    border-radius: 12px; /* Links arredondados em vez de retangulares */
+    margin: 4px 12px; /* Margem horizontal para "flutuar" dentro do drawer */
+    transition: all 0.2s ease;
+}
+
+    ::deep.mud-nav-link:hover {
+        background-color: rgba(0,0,0,0.05) !important;
+        transform: translateX(4px); /* Animação sutil de movimento */
+    }
+
+    ::deep.mud-nav-link.active {
+        background-color: var(--mud-palette-primary) !important;
+        color: white !important;
+        box-shadow: 0 4px 12px rgba(89, 74, 226, 0.3); /* Sombra colorida (Glow) */
+    }
+
+.mud-theme-dark ::deep.mud-nav-link:hover {
+    background-color: rgba(255,255,255,0.1) !important;
+}
+
+/* 
+   -------------------------------------------------------------------------
+   RESPONSIVIDADE (Mobile)
+   -------------------------------------------------------------------------
+   Em telas pequenas, o efeito "Floating" consome muito espaço.
+   Revertemos para o padrão "Full Height" em mobile.
+*/
+@media (max-width: 960px) {
+    ::deep.floating-drawer {
+        top: 0 !important;
+        height: 100% !important;
+        margin-left: 0;
+        border-radius: 0 !important;
+        background-color: var(--mud-palette-background) !important; /* Remove vidro em mobile para performance */
+        backdrop-filter: none;
+    }
+}

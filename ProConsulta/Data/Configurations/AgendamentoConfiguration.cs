@@ -1,5 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using ProConsulta.Models;
 
 namespace ProConsulta.Data.Configurations
@@ -19,8 +19,8 @@ namespace ProConsulta.Data.Configurations
             builder.Property(x => x.PacienteId)
                 .IsRequired();
 
-            builder.Property(m => m.MedicoId)
-                .IsRequired();
+            builder.Property(x => x.MedicoId)
+               .IsRequired();
         }
     }
 }

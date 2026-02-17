@@ -1,21 +1,26 @@
 using Microsoft.AspNetCore.Components.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Diagnostics;
 using MudBlazor.Services;
 using ProConsulta.Components;
 using ProConsulta.Components.Account;
+using ProConsulta.Components.Theme;
 using ProConsulta.Data;
+using ProConsulta.Repositories.Agendamentos;
+using ProConsulta.Repositories.Especialidades;
 using ProConsulta.Repositories.Medicos;
 using ProConsulta.Repositories.Pacientes;
+using ProConsulta.Services;
 
 var builder = WebApplication.CreateBuilder(args);
-
-// Add MudBlazor services
-builder.Services.AddMudServices();
 
 // Add services to the container.
 builder.Services.AddRazorComponents()
     .AddInteractiveServerComponents();
+
+// Add MudBlazor services
+builder.Services.AddMudServices();
 
 builder.Services.AddCascadingAuthenticationState();
 builder.Services.AddScoped<IdentityUserAccessor>();
@@ -24,6 +29,9 @@ builder.Services.AddScoped<AuthenticationStateProvider, IdentityRevalidatingAuth
 
 builder.Services.AddScoped<IPacienteRepository, PacienteRepository>();
 builder.Services.AddScoped<IMedicoRepository, MedicoRepository>();
+builder.Services.AddScoped<IEspecialidadeRepository, EspecialidadeRepository>();
+builder.Services.AddScoped<IAgendamentoRepository, AgendamentoRepository>();
+builder.Services.AddSingleton<ThemeService>();
 
 builder.Services.AddAuthentication(options =>
     {
@@ -34,7 +42,8 @@ builder.Services.AddAuthentication(options =>
 
 var connectionString = builder.Configuration.GetConnectionString("DefaultConnection") ?? throw new InvalidOperationException("Connection string 'DefaultConnection' not found.");
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
-    options.UseSqlServer(connectionString));
+    options.UseSqlServer(connectionString)
+    .ConfigureWarnings(w => w.Ignore(RelationalEventId.PendingModelChangesWarning)));
 builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 
 builder.Services.AddIdentityCore<ApplicationUser>()
@@ -62,9 +71,10 @@ else
 
 app.UseHttpsRedirection();
 
-app.UseStaticFiles();
+
 app.UseAntiforgery();
 
+app.MapStaticAssets();
 app.MapRazorComponents<App>()
     .AddInteractiveServerRenderMode();
 

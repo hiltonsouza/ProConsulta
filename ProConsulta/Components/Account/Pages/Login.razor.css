@@ -1,0 +1,25 @@
+﻿/* Efeito de Vidro no Card */
+::deep .glass-card {
+    background-color: rgba(21, 25, 37, 0.7) !important; /* Semi-transparente */
+    backdrop-filter: blur(10px); /* O Blur mágico */
+    border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+/* Cor de Fundo dos Inputs (Para bater com o design Tailwind) */
+::deep .custom-input-bg .mud-input-control-input-container {
+    background-color: #1F2436;
+    border-radius: 8px;
+}
+/* Remove borda padrão para parecer 'flat' */
+::deep .custom-input-bg .mud-input-outlined-border {
+    border-color: transparent;
+}
+/* Coloca borda/brilho só quando clica */
+::deep .custom-input-bg.mud-input-input-control.mud-input-focused .mud-input-outlined-border {
+    border-color: #5c5ef0;
+}
+
+/* Sombra Neon do Botão */
+::deep .shadow-neon {
+    box-shadow: 0 0 20px rgba(92, 94, 240, 0.4);
+}

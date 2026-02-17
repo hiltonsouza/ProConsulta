@@ -12,15 +12,15 @@ using ProConsulta.Data;
 namespace ProConsulta.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20240807230516_inicialapp")]
-    partial class inicialapp
+    [Migration("20260208175350_initialapp")]
+    partial class initialapp
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "8.0.7")
+                .HasAnnotation("ProductVersion", "9.0.12")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
@@ -432,7 +432,7 @@ namespace ProConsulta.Migrations
 
                     b.Property<string>("Nome")
                         .IsRequired()
-                        .HasColumnType("VARCHAR(60)");
+                        .HasColumnType("VARCHAR(50)");
 
                     b.HasKey("Id");
 
@@ -457,15 +457,15 @@ namespace ProConsulta.Migrations
                         {
                             Id = "95433ac4-2fe9-468f-b80d-b05ec3724d1d",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "a3c0a013-dba9-4e0c-a03b-8bceda5e9a35",
+                            ConcurrencyStamp = "4c081e26-337a-4e1a-9dc9-f853ccdaa5ac",
                             Email = "proconsulta@hotmail.com.br",
                             EmailConfirmed = true,
                             LockoutEnabled = false,
-                            NormalizedEmail = "PROCONSULTA@HOTMAIL.COM",
-                            NormalizedUserName = "PROCONSULTA@HOTMAIL.COM",
-                            PasswordHash = "AQAAAAIAAYagAAAAECUfDNuvouPcvwu0mEUdWaMIgqky2xFc8dF7EAm19koR/wlqS+VDuRtdsCwI91GaIg==",
+                            NormalizedEmail = "PROCONSULTA@HOTMAIL.COM.BR",
+                            NormalizedUserName = "PROCONSULTA@HOTMAIL.COM.BR",
+                            PasswordHash = "AQAAAAIAAYagAAAAEEcN927S+Btu8OO7CYaCDxcSW9T3UK7CWyHg0jpzHr2TovogyL2lLmsVCNjZxRMGHw==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "456a3d3c-c407-4c02-a5ef-d26581a91582",
+                            SecurityStamp = "c5bb0552-771b-404c-9d61-52e65b6f9562",
                             TwoFactorEnabled = false,
                             UserName = "proconsulta@hotmail.com.br",
                             Nome = "Pro Consulta"

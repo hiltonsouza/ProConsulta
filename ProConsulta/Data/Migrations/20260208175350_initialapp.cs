@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace ProConsulta.Migrations
 {
     /// <inheritdoc />
-    public partial class inicialapp : Migration
+    public partial class initialapp : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -47,7 +47,7 @@ namespace ProConsulta.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Nome = table.Column<string>(type: "VARCHAR(60)", nullable: false),
+                    Nome = table.Column<string>(type: "VARCHAR(50)", nullable: false),
                     Documento = table.Column<string>(type: "NVARCHAR(11)", nullable: false),
                     Email = table.Column<string>(type: "VARCHAR(50)", nullable: false),
                     Celular = table.Column<string>(type: "NVARCHAR(11)", nullable: false),
@@ -123,7 +123,7 @@ namespace ProConsulta.Migrations
             migrationBuilder.InsertData(
                 table: "AspNetUsers",
                 columns: new[] { "Id", "AccessFailedCount", "ConcurrencyStamp", "Discriminator", "Email", "EmailConfirmed", "LockoutEnabled", "LockoutEnd", "Nome", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "SecurityStamp", "TwoFactorEnabled", "UserName" },
-                values: new object[] { "95433ac4-2fe9-468f-b80d-b05ec3724d1d", 0, "a3c0a013-dba9-4e0c-a03b-8bceda5e9a35", "Atendente", "proconsulta@hotmail.com.br", true, false, null, "Pro Consulta", "PROCONSULTA@HOTMAIL.COM", "PROCONSULTA@HOTMAIL.COM", "AQAAAAIAAYagAAAAECUfDNuvouPcvwu0mEUdWaMIgqky2xFc8dF7EAm19koR/wlqS+VDuRtdsCwI91GaIg==", null, false, "456a3d3c-c407-4c02-a5ef-d26581a91582", false, "proconsulta@hotmail.com.br" });
+                values: new object[] { "95433ac4-2fe9-468f-b80d-b05ec3724d1d", 0, "4c081e26-337a-4e1a-9dc9-f853ccdaa5ac", "Atendente", "proconsulta@hotmail.com.br", true, false, null, "Pro Consulta", "PROCONSULTA@HOTMAIL.COM.BR", "PROCONSULTA@HOTMAIL.COM.BR", "AQAAAAIAAYagAAAAEEcN927S+Btu8OO7CYaCDxcSW9T3UK7CWyHg0jpzHr2TovogyL2lLmsVCNjZxRMGHw==", null, false, "c5bb0552-771b-404c-9d61-52e65b6f9562", false, "proconsulta@hotmail.com.br" });
 
             migrationBuilder.InsertData(
                 table: "Especialidades",
